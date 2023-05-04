@@ -194,6 +194,8 @@ bool Tree::searchNode(std::string name) {
     if (anker == nullptr) {
         return false;
     }
+
+    bool c = false;
     
     queue<TreeNode*> q;
     q.push(anker);
@@ -205,7 +207,7 @@ bool Tree::searchNode(std::string name) {
         if (ptr->getName() == name) {
             std::cout << "+ Fundstellen:" << std::endl;
             ptr->print();
-            return true;
+            c = true;
         }
         
         if (ptr->getLeft() != nullptr) {
@@ -218,7 +220,7 @@ bool Tree::searchNode(std::string name) {
     }
     
     std::cout << "- Datensatz nicht gefunden." << std::endl;
-    return false;
+    return c;
 }
 
 void Tree::printPreorder(TreeNode* node) {
