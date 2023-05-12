@@ -219,7 +219,7 @@ bool Tree::searchNode(std::string name) {
         }
     }
     
-    std::cout << "- Datensatz nicht gefunden." << std::endl;
+    if(!c) { std::cout << "- Datensatz nicht gefunden." << std::endl; }
     return c;
 }
 
