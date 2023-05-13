@@ -29,9 +29,6 @@ class Tree
         friend TreeNode* get_anker(Tree& TN);
 
     private:
-        void recolor(TreeNode* node, bool color);
-        //muss ich noch umschreiben, da ich ja parent jetzt als pointer habe
-        void findMinNodeAndParentInBranch(TreeNode* &node, TreeNode* &parent);
         int proofRBCriterion(TreeNode* param);
         void balance(TreeNode* param);
         bool rotateTreeRight(TreeNode* param);

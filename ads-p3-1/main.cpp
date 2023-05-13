@@ -148,7 +148,6 @@ int main()
 {
     int result = Catch::Session().run();
 
-    // Ihr Code hier:
     Tree* tree = new Tree();
     char input;
 
