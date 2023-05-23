@@ -8,7 +8,8 @@
 #include <string>
 
 // Ihr Code hier:
-void TreeNode::print() {
+void TreeNode::print()
+{
     std::cout
         << "NodeID: " << nodeChronologicalID
         << ", Name: " << name
@@ -16,5 +17,6 @@ void TreeNode::print() {
         << ", Einkommen: " << income
         << ", PLZ: " << postCode
         << ", PosID: " << nodeOrderID
+        << ", Red: " << red
         << std::endl;
 }
