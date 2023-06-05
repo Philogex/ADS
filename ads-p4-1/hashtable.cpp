@@ -26,10 +26,10 @@ int HashTable::hashValue(int item)
 	v = x;
     while ((*this->hashTable)[v] != -1)
     {
-		this->collisionCount++;
         v = (x + i * i) % this->size;
         i++;
     }
+	if(v != x) this->collisionCount++;
 
     return v;
 }
@@ -54,10 +54,10 @@ void HashTable::rehashing()
 			v = x;
 			while ((*new_hashTable)[v] != -1)
 			{
-				this->collisionCount++;
 				v = (x + n * n) % new_size;
 				n++;
 			}
+			if(v != x) this->collisionCount++;
 			(*new_hashTable)[v] = item;
 		}
 	}

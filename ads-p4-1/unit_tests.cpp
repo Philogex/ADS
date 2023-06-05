@@ -128,23 +128,22 @@ TEST_CASE("HashTable", "[HASHTABLE]") {
 
 		HashTable H(20);
 
-    //V{98, 44, 30, 22, 64, 63, 11, 23, 8, 18}
 		for (unsigned int i = 0; i < V.size(); i++)
 		{
 			H.insert(V.at(i));
 		}
 		H.insert(15);
 		H.insert(16);
+		H.insert(21);
+		H.insert(22);
 
 		if (H.getSize() > 0) {
 			REQUIRE(H.at(3) == 44);
 			REQUIRE(H.at(8) == 8);
 			REQUIRE(H.at(11) == 11);
 			REQUIRE(H.at(15) == 15);
-      //falscher test case 16 muss zu 17 geaendert werden
-			REQUIRE(H.at(17) == 16);
-      //hier andersrum. 17 muss zu 16 geaendert werden
 			REQUIRE(H.at(16) == 98);
+			REQUIRE(H.at(17) == 16);
 			REQUIRE(H.at(18) == 18);
 			REQUIRE(H.at(22) == 22);
 			REQUIRE(H.at(23) == 63);
@@ -154,7 +153,7 @@ TEST_CASE("HashTable", "[HASHTABLE]") {
 		}
 		REQUIRE(H.getSize() == 41);
 		REQUIRE(H.getCollisionCount() == 5);
-		REQUIRE(H.getElements() == 12);
+		REQUIRE(H.getElements() == 14);
 	}
 }
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
