@@ -71,6 +71,8 @@ namespace Graphsearch {
 		*			  false		Graph ist nicht zusammenhaengend
 		*/
 	bool BFS(const EdgeWeightedGraph& G, int v, std::vector<bool>& marked, std::vector<int>& edgeTo) {
+		marked.assign(G.getV(), false);
+		edgeTo.assign(G.getV(), -1);
 		std::queue<int> queue;
 		marked[v] = true;
 		queue.push(v);
