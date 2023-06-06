@@ -145,8 +145,8 @@ void mainscreen_dijkstra(EdgeWeightedDigraph* &digraph) {
 	std::set<int> vertices;
 
 	for(const DirectedEdge &e : digraph->edges()) {
-		if(e.from() != std::stoi(input)) {
-			vertices.insert(e.from());
+		if(e.to() != std::stoi(input)) {
+			vertices.insert(e.to());
 		}
 	}
 

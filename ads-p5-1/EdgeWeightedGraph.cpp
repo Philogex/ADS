@@ -162,43 +162,63 @@ std::vector<Edge> EdgeWeightedGraph::edges() const
 
 bool EdgeWeightedGraph::del_Edge(Edge e)
 {
+	//std::cout << "Deletable Edge: " << e.either() << ", " << e.other(e.either()) << ": [" << e.weight() << "]" << std::endl;
 	int v = e.either();
     int w = e.other(v);
 
-	std::vector<Edge> v_edges = adj[v];
-	std::vector<Edge> w_edges = adj[w];
+	std::cout << "adj[v]:" << std::endl;
+	for(const Edge &e : adj[v]) {
+		std::cout << e.either() << ", " << e.other(e.either()) << ": [" << e.weight() << "]" << std::endl;
+	}
+	std::cout << "adj[w]:" << std::endl;
+	for(const Edge &e : adj[w]) {
+		std::cout << e.either() << ", " << e.other(e.either()) << ": [" << e.weight() << "]" << std::endl;
+	}
 
 	bool v_c = true, w_c = true;
 	int v_i = 0, w_i = 0;
-	for(Edge i : v_edges) {
-		if(i == e) {
-			v_c = false;
-		}
-		else if(i != e && v_c == true) {
-			v_i++;
-		}
-	}
-	for(Edge i : w_edges) {
-		if(i == e) {
-			w_c = false;
-		}
-		else if(i != e && w_c == true) {
-			w_i++;
-		}
-	}
-    if (v_c || w_c) {
+
+	for (std::vector<Edge>::iterator it = adj[v].begin(); it != adj[v].end(); it++) {
+        if (*it == e) {
+            v_c = false;
+        }
+        else if (*it != e && v_c == true) {
+            v_i++;
+        }
+    }
+    for (std::vector<Edge>::iterator it = adj[w].begin(); it != adj[w].end(); it++) {
+        if (*it == e) {
+            w_c = false;
+        }
+        else if (*it != e && w_c == true) {
+            w_i++;
+        }
+    }
+
+    if (v_c && w_c) {
         return false;
     }
 
     adj[v].erase(adj[v].begin() + v_i);
 	adj[v].shrink_to_fit();
     adj[w].erase(adj[w].begin() + w_i);
-	adj[v].shrink_to_fit();
+	adj[w].shrink_to_fit();
+
+
+	std::cout << "adj[v]:" << std::endl;
+	for(const Edge &e : adj[v]) {
+		std::cout << e.either() << ", " << e.other(e.either()) << ": [" << e.weight() << "]" << std::endl;
+	}
+	std::cout << "adj[w]:" << std::endl;
+	for(const Edge &e : adj[w]) {
+		std::cout << e.either() << ", " << e.other(e.either()) << ": [" << e.weight() << "]" << std::endl;
+	}
 
 	this->E--;
 
     return true;
 }
+
 
 /**
  * Gibt die verbunden Knoten eines Knoten v zurueck

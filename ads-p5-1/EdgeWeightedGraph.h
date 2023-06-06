@@ -25,7 +25,7 @@ public:
 	}	  
 };
 
-inline bool operator==(const Edge& lhs, const Edge& rhs) { return lhs.weight() == rhs.weight(); }
+inline bool operator==(const Edge& lhs, const Edge& rhs) { return lhs.either() == rhs.either() && lhs.other(lhs.either()) == rhs.other(rhs.either()); }
 inline bool operator!=(const Edge& lhs, const Edge& rhs) { return !operator==(lhs, rhs); }
 inline bool operator< (const Edge& lhs, const Edge& rhs) { return lhs.weight() < rhs.weight(); }
 inline bool operator> (const Edge& lhs, const Edge& rhs) { return  operator< (rhs, lhs); }
