@@ -38,15 +38,15 @@ void print_adjacency_list(const EdgeWeightedGraph& graph) {
 void mainscreen_printMainscreen() {
     std::cout 
         << "Praktikum 5: Graphenalgorithem:" << std::endl
-        << "1) Graph einlesen" << std::endl
-        << "2) Tiefensuche" << std::endl
-        << "3) Breitensuche" << std::endl
-        << "4) MST nach Prim (Eingabe: Startknoten)" << std::endl
-		<< "5) MST nach Kruskal" << std::endl
-        << "6) Kuerzeste Wege nach Dijkstra (Eingabe: Startknoten)" << std::endl
-        << "7) Ausgabe der Adjazenzliste" << std::endl
-		<< "8) Kante loeschen" << std::endl
-        << "9) Kante hinzufuegen" << std::endl
+        << "1) Graph einlesen (Gerichtet/ Ungerichtet)" << std::endl
+        << "2) Tiefensuche (Ungerichtet)" << std::endl
+        << "3) Breitensuche (Ungerichtet)" << std::endl
+        << "4) MST nach Prim (Eingabe: Startknoten) (Ungerichtet)" << std::endl
+		<< "5) MST nach Kruskal (Ungerichtet)" << std::endl
+        << "6) Kuerzeste Wege nach Dijkstra (Eingabe: Startknoten) (Gerichtet)" << std::endl
+        << "7) Ausgabe der Adjazenzliste (Ungerichtet)" << std::endl
+		<< "8) Kante loeschen (Gerichtet/ Ungerichtet)" << std::endl
+        << "9) Kante hinzufuegen (Gerichtet/ Ungerichtet)" << std::endl
 		<< "10)Programm beenden" << std::endl
 		<< "Weiter mit beliebiger Eingabe ..." << std::endl
         << "?>";
@@ -197,10 +197,14 @@ void mainscreen_del_edge(EdgeWeightedGraph* &graph, EdgeWeightedDigraph* &digrap
 		&&
 		(del_de.from() != 0 || del_de.to() != 0)
 		) 
-	{
-		graph->del_Edge(del_e);
-		digraph->del_Edge(del_de);
-		std::cout << "+ Vertex geloescht." << std::endl;
+	{	
+		if(digraph->del_Edge(del_de)) {
+			graph->del_Edge(del_e);
+			std::cout << "+ Vertex geloescht." << std::endl;
+		}
+		else {
+			std::cout << "- From/To stimmen nicht mit dem direktionalen Graphen ueberein." << std::endl;
+		}
 	}
 	else {
 		std::cout << "- Vertex durch Fehler nicht geloescht." << std::endl;

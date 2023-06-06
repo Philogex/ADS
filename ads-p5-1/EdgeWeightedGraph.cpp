@@ -166,6 +166,7 @@ bool EdgeWeightedGraph::del_Edge(Edge e)
 	int v = e.either();
     int w = e.other(v);
 
+	/*
 	std::cout << "adj[v]:" << std::endl;
 	for(const Edge &e : adj[v]) {
 		std::cout << e.either() << ", " << e.other(e.either()) << ": [" << e.weight() << "]" << std::endl;
@@ -174,6 +175,7 @@ bool EdgeWeightedGraph::del_Edge(Edge e)
 	for(const Edge &e : adj[w]) {
 		std::cout << e.either() << ", " << e.other(e.either()) << ": [" << e.weight() << "]" << std::endl;
 	}
+	*/
 
 	bool v_c = true, w_c = true;
 	int v_i = 0, w_i = 0;
@@ -204,7 +206,7 @@ bool EdgeWeightedGraph::del_Edge(Edge e)
     adj[w].erase(adj[w].begin() + w_i);
 	adj[w].shrink_to_fit();
 
-
+	/*
 	std::cout << "adj[v]:" << std::endl;
 	for(const Edge &e : adj[v]) {
 		std::cout << e.either() << ", " << e.other(e.either()) << ": [" << e.weight() << "]" << std::endl;
@@ -213,6 +215,7 @@ bool EdgeWeightedGraph::del_Edge(Edge e)
 	for(const Edge &e : adj[w]) {
 		std::cout << e.either() << ", " << e.other(e.either()) << ": [" << e.weight() << "]" << std::endl;
 	}
+	*/
 
 	this->E--;
 

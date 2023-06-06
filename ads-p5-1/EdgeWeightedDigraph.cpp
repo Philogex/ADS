@@ -5,6 +5,8 @@
 #include <string>
 #include "EdgeWeightedDigraph.h"
 
+#include <iostream>
+
 /**
  * Gibt zurueck ob der Knoten v ein gueltiger Knoten im Graph ist
  *
@@ -144,38 +146,27 @@ std::vector<DirectedEdge> EdgeWeightedDigraph::edges() const
 
 bool EdgeWeightedDigraph::del_Edge(DirectedEdge e)
 {
-	int v = e.from();
-    int w = e.to();
+	int f = e.from();
+	bool f_c = true;
+	int f_i = 0;
 
-    std::vector<DirectedEdge> v_edges = adj[v];
-    std::vector<DirectedEdge> w_edges = adj[w];
-
-    // Check if the edge exists in the graph
-    bool v_c = true, w_c = true;
-    int v_i = 0, w_i = 0;
-    for (int i = 0; i < v_edges.size(); ++i) {
-        if (v_edges[i] == e) {
-            v_c = false;
-            v_i = i;
-            break;
+	for (std::vector<DirectedEdge>::iterator it = adj[f].begin(); it != adj[f].end(); it++) {
+        if (*it == e) {
+            f_c = false;
+        }
+        else if (*it != e && f_c == true) {
+            f_i++;
         }
     }
-    for (int i = 0; i < w_edges.size(); ++i) {
-        if (w_edges[i] == e) {
-            w_c = false;
-            w_i = i;
-            break;
-        }
-    }
-    if (v_c || w_c) {
+
+    if (f_c) {
         return false;
     }
 
-    // Remove the edge from the adjacency lists of both vertices
-    v_edges.erase(v_edges.begin() + v_i);
-    w_edges.erase(w_edges.begin() + w_i);
+    adj[f].erase(adj[f].begin() + f_i);
+	adj[f].shrink_to_fit();
 
-    this->E--;
+	this->E--;
 
     return true;
 }

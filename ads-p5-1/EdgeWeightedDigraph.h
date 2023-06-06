@@ -26,7 +26,7 @@ public:
 	int to() const { return _to; }
 };
 
-inline bool operator==(const DirectedEdge& lhs, const DirectedEdge& rhs) { return lhs.weight() == rhs.weight(); }
+inline bool operator==(const DirectedEdge& lhs, const DirectedEdge& rhs) { return lhs.from() == rhs.from() && lhs.to() == rhs.to(); }
 inline bool operator!=(const DirectedEdge& lhs, const DirectedEdge& rhs) { return !operator==(lhs, rhs); }
 inline bool operator< (const DirectedEdge& lhs, const DirectedEdge& rhs) { return lhs.weight() < rhs.weight(); }
 inline bool operator> (const DirectedEdge& lhs, const DirectedEdge& rhs) { return  operator< (rhs, lhs); }
@@ -43,13 +43,13 @@ private:
 public:
 	EdgeWeightedDigraph(int V);								// Leeren Digraphen mit v Knoten erstellen
 	EdgeWeightedDigraph(std::string filename);				// Graph einlesen aus Textdatei
-	void add(DirectedEdge e);								// gerichtete Kante hinzufügen
+	void add(DirectedEdge e);								// gerichtete Kante hinzufï¿½gen
 	int getV() const;										// liefert Anzahl Knoten	
 	int getE() const;										// liefert Anzahl der Kanten
 	std::vector<std::vector<DirectedEdge>> getAdj() const;	// liefert die gestamte Kantenliste
 	std::vector<DirectedEdge> getAdj(int v) const;			// liefert Array der adjazenten Kanten zu v
 	std::vector<DirectedEdge> edges() const;				// alle Kanten dieses Graphen
 	const std::vector<DirectedEdge> operator[](int v) const;
-	bool del_Edge(DirectedEdge e);						// Löscht eine Kante
+	bool del_Edge(DirectedEdge e);						// Lï¿½scht eine Kante
 };
 
